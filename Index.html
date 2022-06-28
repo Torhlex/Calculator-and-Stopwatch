@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STOPWATCH</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="main.js"></script>
+</head>
+<body>
+    <Div class="parent">
+        <div class="overall">
+            <h1>STOPWATCH</h1>
+            <h3>JAVASCRIPT STOPWATCH</h3>
+            <div class="timecounter">00:00:00
+            </div>
+            <div class="Bot">
+                <button  class="startTimer"> Start</button>
+                <button class="stopTimer">Stop</button>
+                <button class="resetTimer">Reset</button>
+            </div>
+        </div>
+    </Div>
+</body>
+</html>
+<style>
+    body{
+        background-color: black;
+    }
+.parent{
+    background-color: rgb(255, 255, 255);
+    width: 30%;
+    height: 250px;
+    margin-left: 35%;
+    margin-top:10%;
+    border-radius: 10px;
+}
+
+.overall{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin: 20px;
+    padding-top: 1.7px;
+}
+
+h1, h2, h3{
+    text-align: center;
+}
+
+.timecounter{
+    font-style:italic;
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px; 
+    margin-bottom: 15px;
+}
+
+.Bot{
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+}
+
+button{
+    /* position: absolute; */
+    width: 100px;
+    height: 35px;
+    /* margin-top: 5px; */
+    color: black;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+  .startTimer{
+    /* color: #ffff; */
+    background-color: green;
+}
+
+.stopTimer {
+    /* color: #ffff; */
+    background-color: red;
+}
+
+.resetTimer {
+    /* color: #ffff; */
+    background-color: blue;
+}
+
+ button:hover{
+    color: #ffff;
+}
+
+    /* button:active{
+    color: #ffff;
+    animation-duration:10s;
+    } */
+</style>
+
+<script>
+const timer = document.getElementById('timecounter');
+
+let hr = 0;
+let min = 0;
+let sec = 0;
+let stoptime = true;
+
+function startTimer() {
+  if (stoptime == true) {
+        stoptime = false;
+        timerCycle();
+    }
+}
+function stopTimer() {
+  if (stoptime == false) {
+    stoptime = true;
+  }
+}
+
+function timerCycle() {
+    if (stoptime == false) {
+    sec = parseInt(sec);
+    min = parseInt(min);
+    hr = parseInt(hr);
+
+    sec = sec + 1;
+
+    if (sec == 60) {
+      min = min + 1;
+      sec = 0;
+    }
+    if (min == 60) {
+      hr = hr + 1;
+      min = 0;
+      sec = 0;
+    }
+
+    if (sec < 10 || sec == 0) {
+      sec = '0' + sec;
+    }
+    if (min < 10 || min == 0) {
+      min = '0' + min;
+    }
+    if (hr < 10 || hr == 0) {
+      hr = '0' + hr;
+    }
+
+    timer.innerHTML = hr + ':' + min + ':' + sec;
+
+    setTimeout("timerCycle()", 1000);
+  }
+}
+
+function resetTimer() {
+    timer.innerHTML = '00:00:00';
+}
+
+function resetTimer() {
+    timer.innerHTML = "00:00:00";
+    stoptime = true;
+    hr = 0;
+    sec = 0;
+    min = 0;
+}
+
+</script>
